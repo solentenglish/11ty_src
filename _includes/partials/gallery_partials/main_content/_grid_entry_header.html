@@ -1,0 +1,18 @@
+<header class="entry-header">
+<h1 class="entry-title"><a href="{{ post.url }}" rel="bookmark">{{ post.data.index}} {{ post.data.title }}</a></h1>
+    <div class="entry-meta">
+        <span class="posted-on">
+            <span class="posted-on"><time class="entry-date published">{{ post.data.type }}
+            ({{ post.data.answer | wordcount }} words)
+        </time></span>
+            <!-- <time class="entry-date published">{{ post.data.date | asPostDate }}</time> -->
+        </span>
+    </div>
+    <div class="entry-thumbnail">
+        {% if post.data.latest %}
+        <img src="/hero_images/{{ post.data.index }}/new_{{ post.data.jpg_name }}" alt="{{ post.data.jpg_name | toAltText }}">
+        {% else %}
+        <img src="/hero_images/{{ post.data.index }}/{{ post.data.jpg_name }}" alt="{{ post.data.jpg_name | toAltText }}">
+        {% endif %}
+    </div>
+</header>

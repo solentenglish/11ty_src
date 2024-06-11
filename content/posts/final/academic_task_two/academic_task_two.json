@@ -1,0 +1,6 @@
+{
+    "tags": "academic_two",
+    "permalink": "/posts/{{ title | slugify }}",
+    "type": "Academic Task Two",
+    "charts": false
+}

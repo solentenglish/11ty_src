@@ -1,0 +1,6 @@
+{
+    "tags": "general_one",
+    "permalink": "/posts/{{ title | slugify }}",
+    "type": "General Task One",
+    "charts": false
+}

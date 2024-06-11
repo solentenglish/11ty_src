@@ -1,0 +1,13 @@
+{% include 'partials/base_partials/header_content/_head_opening.html' %}
+
+</head>
+<body class="home page page-template page-template-template-portfolio page-template-template-portfolio-php">
+    <div id="page">
+        <div class="container">
+        {% include 'partials/base_partials/_header.html' %}
+        {{ content | safe }}
+        </div>
+    </div>
+    {% include 'partials/base_partials/_footer.html' %}
+</body>
+</html>

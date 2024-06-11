@@ -1,0 +1,33 @@
+---
+layout: base-post.njk
+---
+<div id="content" class="site-content">
+    <div id="primary" class="content-area column two-thirds">
+        <main id="main" class="site-main" role="main">
+            <article>
+                {% include 'partials/single_partials/main_content/_entry_header.html' %}
+                <div class="entry-content">
+                {{ content | safe }}
+                </div>
+                {% include 'partials/single_partials/main_content/_entry_comments.html' %}
+                {% include 'partials/single_partials/main_content/_entry_footer.html' %}
+            </article>
+            {% include 'partials/single_partials/main_content/_entry_nav.html' %}
+        </main>
+    </div>
+    <div id="secondary" class="column third">
+        <div id="sidebar-1" class="widget-area" role="complementary">
+        {% include 'partials/single_partials/sidebar_content/_aside_audio.html' %}
+        </div>
+    </div>
+    <div id="secondary" class="column third">
+        <div id="sidebar-1" class="widget-area" role="complementary">
+        {% include 'partials/single_partials/sidebar_content/_aside_vocab.html' %}
+        </div>
+    </div>
+    <div id="secondary" class="column third">
+        <div id="sidebar-1" class="widget-area" role="complementary">
+        {% include 'partials/single_partials/sidebar_content/_aside_quiz.html' %}
+        </div>
+    </div>
+</div>

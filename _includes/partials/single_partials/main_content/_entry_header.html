@@ -1,0 +1,12 @@
+<header class="entry-header">
+    <h1 class="entry-title">{{ index }} {{ title }}</h1>
+    <div class="entry-meta">
+        <span class="posted-on"><time class="entry-date published">{{ type }}</time></span>
+        </div>
+        <div class="entry-thumbnail">
+        {% if jpg_name  %}
+        <img src="/hero_images/{{ index }}/{{ jpg_name }}" alt="{{ jpg_name | toAltText }}">
+        {% endif %}
+
+    </div>
+</header>

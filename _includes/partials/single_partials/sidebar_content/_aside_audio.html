@@ -1,0 +1,20 @@
+<!-- to style - search widget_hightlights in style.css -->
+<aside id="text-5" class="widget widget_text widget_hightlights">
+    <div class="textwidget _audio_bar" style="">
+    	<div class="content">
+    	</div>
+    	<h3>Audio</h3>
+    	{% set audioPath = '/audio/' + index + '.mp3' %}
+    	<div id="audio_container">
+    	    {% if audioPath | pathExists %}
+    	        <audio controls>
+    	            <source src="{{ audioPath }}" type="audio/mpeg">
+    	            Your browser does not support the audio element.
+    	        </audio>
+    	    {% else %}
+    	        <div>Audio will be available soon!</div>
+    	    {% endif %}
+    	</div>
+
+    </div>
+</aside>

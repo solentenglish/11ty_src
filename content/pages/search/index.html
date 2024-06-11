@@ -1,0 +1,72 @@
+---
+layout: "base-page.njk"
+eleventyNavigation:
+  key: Search
+  order: 2
+title: Search
+image: og_images.jpg
+tags: ['main_menu', 'page']
+description: Quickly search a collection of IELTS band scale 9 essays to help you improve your writing skills. Learn by studying high quality example essays.
+---
+			<div id="content" class="site-content">
+			{% include 'partials/page_partials/_img_hero.html' %}
+			<div id="primary" class="content-area column full">
+				<main id="main" class="site-main">
+					 <div class="content-area column full">
+					 	<p>Enter a keyword to see essays on that topic.</p>
+					 </div>
+					<br>
+				<article class="">
+				<!-- .entry-header -->
+				<div class="entry-content">
+				<div class="wpcmsdev-columns">
+					<div class="column column-width-one-half">
+						<section id="tag_cloud" class="hide_sm_grs">
+							    <ul class="tag_cloud_class">
+							    {%- for post in collections.tagList -%}
+							        <li><a name="{{ post.tag }}" data-weight="{{ post.no }}" onclick="myFunction(this.name)" href="#">{{ post.tag }}</a></li>
+							    {% endfor %}
+							    </ul>
+						</section>
+					</div>
+					<div class="column column-width-one-half">
+							<aside  class="widget widget_recent_entries">
+							<div id="search_container">
+								<div class="field" id="search_results_field">
+								  <input class="searchResults" name="searchField" type="search" placeholder="Key word ..." id="searchField">
+								</div>
+								<br>
+								<h2 class="widget-title searchResults">Search Results: </h2>
+								<ul class="searchResults">
+								    <ul id="searchResults" class="widget widget_recent_entries"></ul>
+								    <div id="noResultsFound">
+								      <p>No results found.</p>
+								    </div>
+								</ul>
+							</div>
+							</aside>
+					</div>
+				</div>
+
+  <script type="text/javascript" src="/js/search.js"></script>
+  <script type="text/javascript">
+  	function myFunction(value) {
+  		var el = document.getElementById("searchField");
+  		el.value = value;
+  		el.dispatchEvent(
+  		  new Event("input", { bubbles: true, cancelable: true })
+  		);
+  	}
+
+  </script>
+
+  			<!-- .entry-content -->
+  			</article>
+  			</main>
+  			<!-- #main -->
+  		</div>
+  		<!-- #primary -->
+  	</div>
+  	<!-- #content -->
+  </div>
+  <!-- .container -->

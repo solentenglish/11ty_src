@@ -1,0 +1,38 @@
+---
+layout: base-post.njk
+---
+{% set regExpTags = r/\/tags\/*.*/gm %}
+{% set regExpHome = r/\/home\/*\/(?:page\-\d+)?/gm %}
+{% set regExpAca1 = r/\/academic\-task\-one\/*\/(?:page\-\d+)?/gm %}
+{% set regExpAca2 = r/\/academic\-task\-two\/*\/(?:page\-\d+)?/gm %}
+{% set regExpGen1 = r/\/general\-task\-one\/*\/(?:page\-\d+)?/gm %}
+{% set regExpGen2 = r/\/general\-task\-two\/*\/(?:page\-\d+)?/gm %}
+<div id="content" class="site-content">
+{{ content | safe }}
+    <div id="secondary" class="column third">
+        <div id="sidebar-1" class="widget-area" role="complementary">
+            {% if regExpHome.test(page.url)  %}
+                {% include 'partials/gallery_partials/sidebar_content/_about_site.html' %}
+                {# {% include 'partials/gallery_partials/sidebar_content/_limited_offer.html' %} #}
+                {% include 'partials/gallery_partials/sidebar_content/_recent_posts.html' %}
+                {% include 'partials/gallery_partials/sidebar_content/_about_services.html' %}
+            {% endif %}
+            {% if regExpTags.test(page.url)  %}
+                {% include 'partials/gallery_partials/sidebar_content/_about_site.html' %}
+                {% include 'partials/gallery_partials/sidebar_content/_about_me.html' %}
+            {% endif %}
+            {% if regExpAca1.test(page.url) %}
+                {% include 'partials/gallery_partials/sidebar_content/_about_aca1.html' %}
+            {% endif %}
+            {% if regExpAca2.test(page.url) %}
+                {% include 'partials/gallery_partials/sidebar_content/_about_aca2.html' %}
+            {% endif %}
+            {% if regExpGen1.test(page.url) %}
+                {% include 'partials/gallery_partials/sidebar_content/_about_gen1.html' %}
+            {% endif %}
+            {% if regExpGen2.test(page.url) %}
+                {% include 'partials/gallery_partials/sidebar_content/_about_gen2.html' %}
+            {% endif %}
+        </div>
+    </div>
+</div>

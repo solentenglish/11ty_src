@@ -1,0 +1,32 @@
+---
+layout: "blog-gallery.njk"
+eleventyNavigation:
+  key: Home
+  order: 1
+title: Home
+image: og_images.jpg
+altTitle: IELTS Writing Tips - An online resource for exam-takers
+pagination:
+  data: collections.sortedPosts
+  size: 12
+  alias: posts
+tags: main_menu
+description: A collection of IELTS band scale 9 essays to help you improve your writing skills. Learn by studying high quality example essays.
+permalink: /{{ title | slugify }}/page-{{ pagination.pageNumber }}
+---
+{% include 'partials/page_partials/_img_hero.html' %}
+<div id="primary" class="content-area column two-thirds">
+    <main id="main" class="site-main" role="main">
+    <div class="grid bloggrid">
+                {% for post in posts %}
+        <article>
+        {% include 'partials/gallery_partials/main_content/_grid_entry_header.html' %}
+        {% include 'partials/gallery_partials/main_content/_grid_entry_body.html' %}
+        </article>
+        {% endfor %}
+    </div>
+    {% include 'partials/gallery_partials/main_content/_grid_pagination.html' %}
+    </main>
+    <!-- #main -->
+</div>
+<!-- #primary -->

@@ -1,0 +1,38 @@
+---
+layout: "base-page.njk"
+title: Test
+tags: ['page']
+---
+<style>
+    .mini-icon {
+        width: 18px;
+        height: 18px;
+    }
+</style>
+
+<div style="width: 200px; display: flex; justify-content: space-around; align-items: center;">
+    <a href="/academic-task-one/page-0" style="display: inline-block;">
+        <span style="display: flex; flex-direction: row; align-items: center;">
+            <span>{% icon "lucide:graduation-cap" %}</span><span style="margin-left: 4px; margin-top: -10px;  color: black; font-size: 14px; font-family: Oswald, sans-serif;">1</span>
+        </span>
+    </a>
+
+    <a href="/academic-task-two/page-0" style="display: inline-block;">
+        <span style="display: flex; flex-direction: row; align-items: center;">
+            <span>{% icon "lucide:graduation-cap" %}</span><span style="margin-left: 4px; margin-top: -10px;  color: black; font-size: 14px; font-family: Oswald, sans-serif;">2</span>
+        </span>
+    </a>
+
+    <a href="/general-task-one/page-0" style="display: inline-block;">
+        <span style="display: flex; flex-direction: row; align-items: center;">
+            <span>{% icon "lucide:globe", '{ "class": "mini-icon" }' %}</span><span style="margin-left: 4px; margin-top: -10px;  color: black; font-size: 14px; font-family: Oswald, sans-serif;">1</span>
+        </span>
+    </a>
+
+    <a href="/general-task-two/page-0" style="display: inline-block;">
+        <span style="display: flex; flex-direction: row; align-items: center;">
+            <span>{% icon "lucide:globe", '{ "class": "mini-icon" }' %}</span><span style="margin-left: 4px; margin-top: -10px;  color: black; font-size: 14px; font-family: Oswald, sans-serif;">2</span>
+        </span>
+    </a>
+</div>
+

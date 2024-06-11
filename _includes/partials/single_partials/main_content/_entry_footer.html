@@ -1,0 +1,21 @@
+<footer class="entry-footer">
+    <span class="cat-links">
+        Posted in:
+        {% for tag in tags -%}
+            {% if   (tag !== 'post') and
+                    (tag !== 'academic_one') and
+                    (tag !== 'academic_two') and
+                    (tag !== 'general_one') and
+                    (tag !== 'general_two') and
+                    (tag !== 'main_menu') and
+                    (tag !== 'page')
+            %}
+                {% if loop.revindex > 1 %}
+                    <span><a href="/tags/{{ tag }}">{{ tag }},</a></span>
+                {% else %}
+                    <span><a href="/tags/{{ tag }}">{{ tag }}</a></span>
+                {% endif %}
+            {% endif %}
+        {%- endfor %}
+    </span>
+</footer>

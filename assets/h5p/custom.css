@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'Raleway';
+  src: url('./fonts/Raleway.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[id^="h5p-mcq"], .question-container {
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif; /* Specify a fallback font */
+    line-height: 25.2px;
+}
+
+.h5p-question-introduction {
+  min-height: 30px;
+}

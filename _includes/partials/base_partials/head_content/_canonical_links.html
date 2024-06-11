@@ -1,0 +1,19 @@
+{% if page.url.startsWith("/home") %}
+    <!-- Add canonical link for pages with the root /home -->
+    <link rel="canonical" href="https://ieltswriting.tips/" />
+{% elseif page.url.startsWith("/academic-task-one") %}
+    <!-- Add canonical link for pages with the root /academic-task-one -->
+    <link rel="canonical" href="https://ieltswriting.tips/academic-task-one" />
+{% elseif page.url.startsWith("/academic-task-two") %}
+    <!-- Add canonical link for pages with the root /academic-task-two -->
+    <link rel="canonical" href="https://ieltswriting.tips/academic-task-two" />
+{% elseif page.url.startsWith("/general-task-one") %}
+    <!-- Add canonical link for pages with the root /general-task-one -->
+    <link rel="canonical" href="https://ieltswriting.tips/general-task-one" />
+{% elseif page.url.startsWith("/general-task-two") %}
+    <!-- Add canonical link for pages with the root /general-task-two -->
+    <link rel="canonical" href="https://ieltswriting.tips/general-task-two" />
+{% else %}
+    <!-- Default canonical link -->
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+{% endif %}

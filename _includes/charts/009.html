@@ -1,0 +1,192 @@
+<div style="margin-top: 30px; margin-bottom: 30px;">
+
+```vega
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "title": {
+    "text": "Noise Complaints in Newtown",
+    "fontSize": 24,
+    "dy": -20
+  },
+  "width": 600,
+  "height": 400,
+  "padding": 5,
+  "config": {
+     "legend": {
+        "orient": "bottom",
+        "layout": {
+            "bottom": {
+                "anchor": "middle"
+                }
+            }
+    },
+    "axis": {
+      "grid": true,
+      "nice": false
+    },
+    "axisX": {
+      "labelFontSize": 16,
+      "labelBaseline": "line-bottom",
+      "labelLineHeight": -50
+    },
+    "axisY": {
+      "labelFontSize": 16,
+      "labelPadding": 10
+    }
+  },
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "linear",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    }
+  ],
+
+
+  "data": [
+    {
+      "name": "table",
+      "values": [
+          {"x": "2000", "y": 640, "c": "Road works"},
+          {"x": "2000", "y": 400, "c": "Factories"},
+          {"x": "2000", "y": 320, "c": "Traffic noise"},
+          {"x": "2000", "y": 500, "c": "Domestic / household"},
+
+          {"x": "2002", "y": 580, "c": "Road works"},
+          {"x": "2002", "y": 580, "c": "Factories"},
+          {"x": "2002", "y": 320, "c": "Traffic noise"},
+          {"x": "2002", "y": 500, "c": "Domestic / household"},
+
+          {"x": "2004", "y": 400, "c": "Road works"},
+          {"x": "2004", "y": 620, "c": "Factories"},
+          {"x": "2004", "y": 320, "c": "Traffic noise"},
+          {"x": "2004", "y": 500, "c": "Domestic / household"},
+
+          {"x": "2006", "y": 380, "c": "Road works"},
+          {"x": "2006", "y": 700, "c": "Factories"},
+          {"x": "2006", "y": 200, "c": "Traffic noise"},
+          {"x": "2006", "y": 400, "c": "Domestic / household"},
+
+          {"x": "2008", "y": 220, "c": "Road works"},
+          {"x": "2008", "y": 720, "c": "Factories"},
+          {"x": "2008", "y": 200, "c": "Traffic noise"},
+          {"x": "2008", "y": 400, "c": "Domestic / household"},
+
+          {"x": "2010", "y": 220, "c": "Road works"},
+          {"x": "2010", "y": 700, "c": "Factories"},
+          {"x": "2010", "y": 380, "c": "Traffic noise"},
+          {"x": "2010", "y": 600, "c": "Domestic / household"},
+
+          {"x": "2012", "y": 200, "c": "Road works"},
+          {"x": "2012", "y": 710, "c": "Factories"},
+          {"x": "2012", "y": 500, "c": "Traffic noise"},
+          {"x": "2012", "y": 800, "c": "Domestic / household"},
+
+          {"x": "2014", "y": 160, "c": "Road works"},
+          {"x": "2014", "y": 700, "c": "Factories"},
+          {"x": "2014", "y": 570, "c": "Traffic noise"},
+          {"x": "2014", "y": 1000, "c": "Domestic / household"},
+
+          {"x": "2016", "y": 130, "c": "Road works"},
+          {"x": "2016", "y": 680, "c": "Factories"},
+          {"x": "2016", "y": 600, "c": "Traffic noise"},
+          {"x": "2016", "y": 1200, "c": "Domestic / household"}
+
+
+        ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "direction": "horizontal",
+      "padding": "20",
+      "labelFontSize": "16",
+      "orient": "bottom",
+      "columns": 2,
+      "labelLimit": "none",
+      "columnPadding": 30,
+      "rowPadding": 10,
+      "strokeColor": "black",
+      "symbolSize": 500,
+      "labelOffset": 10,
+      "offset": 30
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {"data": "table", "field": "x"}
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": false,
+      "zero": false,
+      "domain": [0,1400]
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": ["#FF5733", "#3366FF", "#33FF57", "#FF33FF"],
+      "domain": {"data": "table", "field": "c"}
+    }
+  ],
+
+  "axes": [
+    {"orient": "bottom", "scale": "x"},
+    {"orient": "left", "scale": "y", "tickCount": 8}
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "c"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {"data": "series"},
+          "encode": {
+            "enter": {
+              "x": {"scale": "x", "field": "x", "font": 30},
+              "y": {"scale": "y", "field": "y"},
+              "stroke": {"scale": "color", "field": "c"},
+              "strokeWidth": {"value": 6}
+            },
+            "update": {
+              "interpolate": {"signal": "interpolate"},
+              "strokeOpacity": {"value": "0.6"}
+            },
+            "hover": {
+              "strokeOpacity": {"value": 0.5}
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+</div>

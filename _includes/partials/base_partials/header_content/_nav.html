@@ -1,0 +1,31 @@
+<nav id="site-navigation" class="main-navigation">
+    <h2 class="visually-hidden">Top level navigation menu</h2>
+    <div class="menu-menu-1-container">
+
+        <ul id="menu-menu-1" class="menu">
+            {%- for entry in collections.main_menu | eleventyNavigation %}
+            {% set subEntries = collections.all | eleventyNavigation(entry.title) %}
+            <li class="nav-item {{ entry.title | lowercase }}">
+                {% if subEntries[0].url %}
+                <a href="#"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
+                {% else %}
+                <a href="{{ entry.url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
+                {% endif %}
+
+                        {% if subEntries[0].url %}
+                        <ul class="sub-menu">
+                            {%- for subEntry in subEntries %}
+                            {% if subEntry.url | getRootDir != page.url | getRootDir %}
+                            <li><a href="{{ subEntry.url }}" data-short-title="{{ subEntry.shortTitle }}" {% if subEntry.url == page.url %} aria-current="page"{% endif %}>{{ subEntry.title }}</a></li>
+                            {% else %}
+                            <li class="disabled-nav-link"><a href="{{ subEntry.url }}" data-short-title="{{ subEntry.shortTitle }}" {% if subEntry.url == page.url %} aria-current="page"{% endif %}>{{ subEntry.title }}</a></li>
+                            {% endif %}
+                            {%- endfor %}
+                        </ul>
+
+                        {% endif %}
+            </li>
+            {%- endfor %}
+        </ul>
+    </div>
+</nav>

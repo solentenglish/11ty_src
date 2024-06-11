@@ -1,0 +1,70 @@
+<div style="margin-top: 30px; margin-bottom: 30px;">
+
+```vegalite
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Number of US households by income (millions)",
+  "width": 600,
+  "height": 200,
+  "config": {
+     "legend": {
+        "orient": "bottom",
+        "layout": {
+            "bottom": {
+                "anchor": "middle"
+                }
+            },
+        "padding": 20,
+        "fill": "color",
+        "labelFontSize": "16",
+        "columns": 2,
+        "labelLimit": "none",
+        "columnPadding": 30,
+        "rowPadding": 10,
+        "strokeColor": "black",
+        "symbolSize": 500,
+        "labelOffset": 10,
+        "offset": 30,
+        "title": null
+    },
+    "axisX": {
+      "labelAlign": "center",
+      "labelAngle": 0,
+      "labelPadding": 10,
+      "labelFontSize": 16 
+    },
+    "axisY": {
+      "labelPadding": 10,
+      "labelFontSize": 16 
+    }
+  },
+  "data": {
+    "values": [
+      {"year":"2007", "group": "Less than $25,000", "households (millions)":25},
+      {"year":"2007", "group": "$25,000 - $49,999", "households (millions)":27},
+      {"year":"2007", "group": "$50,000 - $74,999", "households (millions)":21},
+      {"year":"2007", "group": "$75,000 - $99,999", "households (millions)":14},
+      {"year":"2007", "group": "$100,000 or more", "households (millions)":29},
+      {"year":"2011", "group": "Less than $25,000", "households (millions)":28},
+      {"year":"2011", "group": "$25,000 - $49,999", "households (millions)":29},
+      {"year":"2011", "group": "$50,000 - $74,999", "households (millions)":21},
+      {"year":"2011", "group": "$75,000 - $99,999", "households (millions)":13},
+      {"year":"2011", "group": "$100,000 or more", "households (millions)":27},
+      {"year":"2015", "group": "Less than $25,000", "households (millions)":27},
+      {"year":"2015", "group": "$25,000 - $49,999", "households (millions)":28},
+      {"year":"2015", "group": "$50,000 - $74,999", "households (millions)":21},
+      {"year":"2015", "group": "$75,000 - $99,999", "households (millions)":15},
+      {"year":"2015", "group": "$100,000 or more", "households (millions)":33}
+    ]
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "year", "labelAngle": 0},
+    "y": {"field": "households (millions)", "type": "quantitative"},
+    "xOffset": {"field": "group", "sort": null},
+    "color": {"field": "group"}
+  }
+}
+```
+
+</div>

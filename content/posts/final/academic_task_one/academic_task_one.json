@@ -1,0 +1,6 @@
+{
+    "tags": "academic_one",
+    "permalink": "/posts/{{ title | slugify }}",
+    "type": "Academic Task One",
+    "charts": true
+}

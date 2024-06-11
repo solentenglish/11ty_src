@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IELTS Writing | {{ title }}</title>
+<meta name="description" content="{{ description }}" />
+
+<meta name="robots" content="index, follow" />
+{% if title == "Home" %}
+	<meta property="og:title" content="{{ altTitle }}"/>
+{% else %}
+    <meta property="og:title" content="{{ title }}"/>
+{% endif %}
+<link rel="icon" href="{{ site.url }}/images/favicon.png" type="image/png">
+<meta property="og:url" content="https://ieltswriting.tips{{ page.url }}" />
+<meta property="og:description" content="{{ description }}" />
+<meta property="og:image" content="{{ site.url }}/images/{{ image }}" />
+<meta property="og:type" content="article" />
+{% include 'partials/base_partials/head_content/_canonical_links.html' %}
+{% include 'partials/base_partials/head_content/_fonts_link.html' %}
+{% include 'partials/base_partials/head_content/_google_tag.html' %}
+{% include 'partials/base_partials/head_content/_stylesheets.html' %}

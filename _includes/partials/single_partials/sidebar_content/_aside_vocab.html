@@ -1,0 +1,54 @@
+<!-- to style - search widget_hightlights in style.css -->
+<aside id="text-5" class="widget widget_text widget_hightlights">
+    <div class="textwidget _vocab_bar" style="">
+    	<div class="content">
+    	</div>
+    	<h3>Glossary</h3>
+    	<form action="">
+    	  <input type="checkbox" id="highlight" name="highlight" checked=false value="highlight">
+    	  <label for="highlight">Highlight vocabulary in text?</label><br>
+    	</form>
+
+<!--         <ul id="myList" style="margin-top: 30px;">
+          {% set numIndex = index | int %}
+          {% for word in keywords[numIndex -1].words %}
+            <li class="glossary_term_grs">{{ word }}</li>
+            <p class="definition_grs">{{ keywords[numIndex -1].definitions[loop.index0] }}</p>
+          {% endfor %}
+        </ul> -->
+        {{ words | dump }}
+        <ul id="myList" style="margin-top: 30px;">
+          {% for word in glossary %}
+            <li class="glossary_term_grs">{{ word.glossed_word }} ({{ word.word_class }})</li>
+            <p class="definition_grs">{{ word.definition }}</p>
+          {% endfor %}
+        </ul>
+
+    </div>
+</aside>
+<script>
+
+	const form = document.querySelector('form');
+	const div = document.querySelector('.content');
+	form.addEventListener('change', e => {
+			var collection = document.getElementsByClassName("vocab");
+			console.log(e.target.value);
+			if (e.target.checked) {
+				for(var i = 0, all = collection.length; i < all; i++){   
+	        		collection[i].style.setProperty("--bg-width", "106%");
+	    		}
+			} else {
+				for(var i = 0, all = collection.length; i < all; i++){  
+	        		collection[i].style.setProperty("--bg-width", "0%");
+	    		}
+			}  	
+	});
+
+</script>
+<script>
+	var newlist = document.querySelectorAll('input[type=checkbox]');
+	for (var item of newlist) {
+	    item.checked = false;
+	}
+</script>
+<!-- 	document.getElementById("resultArea").value = result; -->

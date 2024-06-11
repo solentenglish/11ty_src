@@ -1,0 +1,225 @@
+<style>
+
+  #water-table {
+    margin-top: 30px;
+  }
+
+  #water-table th {
+    background-color: #e5e7eb;
+  }
+
+  #water-table th, #water-table td {
+    min-width: 120px;
+    width:  120px;
+    text-align: center;
+  }
+
+  #water-table th:first-child, #water-table td:first-child {
+    text-align: left;
+    padding-left: 10px;
+  }
+</style>
+
+<div style="margin-top: 30px; margin-bottom: 30px;">
+
+```vega
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "title": {
+    "text": "Global Water Use by Sector",
+    "fontSize": 24,
+    "dy": -20
+  },
+  "width": 600,
+  "height": 400,
+  "padding": 5,
+  "config": {
+     "legend": {
+        "orient": "bottom",
+        "layout": {
+            "bottom": {
+                "anchor": "middle"
+                }
+            }
+    },
+    "axis": {
+      "grid": true,
+      "nice": false
+    },
+    "axisX": {
+      "labelFontSize": 16,
+      "labelBaseline": "line-bottom",
+      "labelLineHeight": -50,
+      "Ytitle": "asdfads"
+    },
+    "axisY": {
+      "labelFontSize": "16",
+      "labelFontSize": 16,
+      "labelPadding": 10
+    }
+  },
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "linear",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    }
+  ],
+
+
+  "data": [
+    {
+      "name": "table",
+      "values": [
+          {"x": "1900", "y": 20, "c": "Domestic"},
+          {"x": "1900", "y": 20, "c": "Industrial"},
+          {"x": "1900", "y": 500, "c": "Agricultural"},
+
+          {"x": "1910", "y": 40, "c": "Domestic"},
+          {"x": "1910", "y": 50, "c": "Industrial"},
+          {"x": "1910", "y": 600, "c": "Agricultural"},
+
+          {"x": "1920", "y": 60, "c": "Domestic"},
+          {"x": "1920", "y": 80, "c": "Industrial"},
+          {"x": "1920", "y": 700, "c": "Agricultural"},
+
+          {"x": "1930", "y": 80, "c": "Domestic"},
+          {"x": "1930", "y": 110, "c": "Industrial"},
+          {"x": "1930", "y": 800, "c": "Agricultural"},
+
+          {"x": "1940", "y": 100, "c": "Domestic"},
+          {"x": "1940", "y": 150, "c": "Industrial"},
+          {"x": "1940", "y": 900, "c": "Agricultural"},
+
+          {"x": "1950", "y": 120, "c": "Domestic"},
+          {"x": "1950", "y": 200, "c": "Industrial"},
+          {"x": "1950", "y": 1100, "c": "Agricultural"},
+
+          {"x": "1960", "y": 150, "c": "Domestic"},
+          {"x": "1960", "y": 300, "c": "Industrial"},
+          {"x": "1960", "y": 1400, "c": "Agricultural"},
+
+          {"x": "1970", "y": 180, "c": "Domestic"},
+          {"x": "1970", "y": 450, "c": "Industrial"},
+          {"x": "1970", "y": 1700, "c": "Agricultural"},
+
+          {"x": "1980", "y": 210, "c": "Domestic"},
+          {"x": "1980", "y": 650, "c": "Industrial"},
+          {"x": "1980", "y": 2100, "c": "Agricultural"},
+
+          {"x": "1990", "y": 250, "c": "Domestic"},
+          {"x": "1990", "y": 900, "c": "Industrial"},
+          {"x": "1990", "y": 2500, "c": "Agricultural"},
+
+          {"x": "2000", "y": 300, "c": "Domestic"},
+          {"x": "2000", "y": 1100, "c": "Industrial"},
+          {"x": "2000", "y": 3000, "c": "Agricultural"}
+        ]
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "direction": "horizontal",
+      "padding": "20",
+      "labelFontSize": "16",
+      "orient": "bottom",
+      "columns": 2,
+      "labelLimit": "none",
+      "columnPadding": 30,
+      "rowPadding": 10,
+      "strokeColor": "black",
+      "symbolSize": 500,
+      "labelOffset": 10,
+      "offset": 30
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {"data": "table", "field": "x"}
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": false,
+      "zero": false,
+      "domain": [0,3200]
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {"data": "table", "field": "c"}
+    }
+  ],
+
+  "axes": [
+    {"orient": "bottom", "scale": "x", "title":"year", "titleFontSize":"20", "titlePadding": 20},
+    {"orient": "left", "scale": "y", "tickCount": 8, "title":"km3", "titleFontSize":"20"}
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {
+          "name": "series",
+          "data": "table",
+          "groupby": "c"
+        }
+      },
+      "marks": [
+        {
+          "type": "line",
+          "from": {"data": "series"},
+          "encode": {
+            "enter": {
+              "x": {"scale": "x", "field": "x", "font": 30},
+              "y": {"scale": "y", "field": "y"},
+              "stroke": {"scale": "color", "field": "c"},
+              "strokeWidth": {"value": 6}
+            },
+            "update": {
+              "interpolate": {"signal": "interpolate"},
+              "strokeOpacity": {"value": "0.6"}
+            },
+            "hover": {
+              "strokeOpacity": {"value": 0.5}
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+<div id="water-table">
+
+```csv-table
+---
+width: 500
+height: 100
+separator: \t
+---
+Country\t Population\t Irrigated land\t Per person water use
+Brazil\t 176 million\t 26,500 km²\t 359 m³
+Congo (DRC)\t 5.2 million\t 100 km²\t 8 m³
+```
+</div>

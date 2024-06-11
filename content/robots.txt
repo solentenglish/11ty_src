@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /tags/
+
+Host: https://ieltswriting.tips/home/page-0
+Sitemap: https://ieltswriting.tips/sitemap.xml

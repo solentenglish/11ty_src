@@ -1,0 +1,27 @@
+<aside id="text-5" class="widget widget_text widget_hightlights">
+    <div class="textwidget _quiz_bar" style="">
+        <h3>Quiz</h3>
+        {% set h5pPath = '/h5p/' + index %}
+
+        {% if h5pPath | pathExists %}
+            <div id='h5p-container'>
+            </div>
+        {% else %}
+        <div id="h5p_container">
+                <div>Quiz will be available soon!</div>
+        </div>
+        {% endif %}
+    </div>
+</aside>
+<script type="text/javascript" src="/h5p/main.bundle.js"></script>
+
+
+<script>
+    const el = document.getElementById('h5p-container');
+    const options = {
+      h5pJsonPath:  '/h5p/{{ index }}',
+      frameJs: '/h5p/frame.bundle.js',
+      frameCss: '/h5p/styles/h5p.css',
+    }
+    new H5PStandalone.H5P(el, options);
+</script>

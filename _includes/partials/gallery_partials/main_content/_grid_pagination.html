@@ -1,0 +1,46 @@
+{% set totalPages = pagination.links.length %}
+{% if totalPages > 1 %}
+
+<div class="clearfix">
+</div>
+<nav aria-labelledby="my-pagination" class="pagination">
+    <span class="page-numbers">{% if pagination.href.previous %}
+        <a href="{{ pagination.href.previous }}">Previous</a>{% else %}Previous{% endif %}
+    </span>
+
+    <!-- main loop -->
+    <!-- start loop -->
+    {%- for pageEntry in pagination.pages %}
+        <!-- open span -->
+        <span class="page-numbers">
+        <!-- check it's not the homepage button -->
+        {%  if loop.index -1 != 0 %}
+            {%  if loop.index -1 != pagination.pageNumber %}
+                <!-- anchor tag with number of page shown and clickable link -->
+                <a href="{{ pagination.hrefs[ loop.index0 ] }}"{% if page.url == pagination.hrefs[ loop.index0 ] %} aria-current="page"{% endif %}>{{ loop.index -1 }}</a>
+            {% else %}
+                <a style="pointer-events: none; cursor: default; background-color: #fff; color: #888 ">{{ loop.index -1 }}</a>
+            {% endif %}
+        <!-- oops it's the homepage button -->
+        {% else %}
+        <!-- open span -->
+        <!-- check we aren't already on the homepage -->
+            {% if page.url != pagination.href.first %}
+                <!-- anchor tag with the word HOME and clickable link -->
+                <a href="{{ pagination.href.first }}">0</a>
+                <!-- oops we are already on the homepage so don't want an active link -->
+                {% else %}
+                <!-- display non-clickable HOME button -->
+                <a style="pointer-events: none; cursor: default; background-color: #fff; color: #888 ">0</a>
+            {% endif %}
+        {% endif %}
+        </span>
+        <!-- end loop -->
+    {%- endfor %}
+
+    <!-- next button -->
+    <span class="page-numbers">{% if pagination.href.next %}
+        <a href="{{ pagination.href.next }}">Next</a>{% else %}Next{% endif %}
+    </span>
+</nav>
+{% endif %}

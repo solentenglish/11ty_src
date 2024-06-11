@@ -1,0 +1,35 @@
+{
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx @11ty/eleventy --serve --incremental",
+    "start": "npx @11ty/eleventy --serve --quiet",
+    "encrypt": "staticrypt ./_site/index.html -d ./_site/",
+    "build": "npx @11ty/eleventy --output=../_site",
+    "spell": "cspell content/posts/final/**/*.md"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-cache-assets": "^2.3.0",
+    "@11ty/eleventy-navigation": "^0.3.5",
+    "@code-blocks/charts": "^0.1.9",
+    "@code-blocks/eleventy-plugin": "^0.1.8",
+    "@code-blocks/tables": "^0.1.8",
+    "dotenv": "^16.3.1",
+    "elasticlunr": "^0.9.5",
+    "luxon": "^3.3.0",
+    "mongodb-realm-cli": "^2.6.2",
+    "staticrypt": "^3.3.0"
+  },
+  "dependencies": {
+    "@code-blocks/graphviz": "^0.1.8",
+    "@kevingimbel/eleventy-plugin-mermaid": "^2.1.0",
+    "cspell": "^6.31.2",
+    "debug": "^4.3.4",
+    "eleventy-plugin-blog-tools": "^0.4.1",
+    "eleventy-plugin-icons": "^4.4.1",
+    "lucide-static": "^0.312.0",
+    "markdown-it": "^13.0.1",
+    "markdown-it-attrs": "^4.1.6",
+    "markdown-it-bracketed-spans": "^1.0.1"
+  }
+}

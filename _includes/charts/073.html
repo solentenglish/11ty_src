@@ -1,0 +1,257 @@
+<div style="margin-top: 40px;">
+
+``` vega
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "title": {
+    "text": "Revenue Sources",
+    "anchor": "start",
+    "fontSize": 20,
+    "color": "#222",
+    "offset": 40
+  },
+  "config": {
+    "text": {
+      "fontSize": {"signal": 20}
+    }
+  },
+  "width": 300,
+  "height": 200,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {"Subject": "Donated food", "Amount": 85.6},
+        {"Subject": "Community contributions", "Amount": 8.4},
+        {"Subject": "Program revenue", "Amount": 2.2},
+        {"Subject": "Investment income", "Amount": 1.2},
+        {"Subject": "Government grants", "Amount": 1.2},
+        {"Subject": "Other income", "Amount": 1.4}
+      ],
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": ["Subject"],
+          "fields": ["Amount"],
+          "ops": ["sum"],
+          "as": ["Total"]
+        },
+        {"type": "pie", "field": "Total", "sort": true}
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {"data": "source", "field": "Subject"}
+    }
+  ],
+  "signals": [
+    {
+      "name": "legendLabels",
+      "value": {
+        "Donated food": "Donated food: 86.6%",
+        "Community contributions": "Community contributions: 10.4%",
+        "Program revenue": "Program revenue: 2.2%",
+        "Investment income": "Investment income: 0.2%",
+        "Government grants": "Government grants: 0.2%",
+        "Other income": "Other income: 0.4%"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "orient": "bottom",
+      "direction": "vertical",
+      "labelFont": "Sans Serif",
+      "labelFontSize": 18,
+      "labelFontWeight": 400,
+      "titleFontSize": 40,
+      "symbolType": "circle",
+      "symbolSize": 500,
+      "padding": 40,
+      "labelBaseline": "top",
+      "labelLimit": 500,
+      "encode": {
+        "labels": {
+          "update": {
+            "text": {"signal": "legendLabels[datum.label]"}
+          }
+        }
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {"data": "source"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "color", "field": "Subject"},
+          "x": {"signal": "width / 2"},
+          "y": {"signal": "height / 2"},
+          "startAngle": {"field": "startAngle"},
+          "endAngle": {"field": "endAngle"},
+          "outerRadius": {"signal": "width / 2.5"}
+        }
+      }
+    },
+    {
+      "type": "group",
+      "encode": {
+        "enter": {
+          "x": {"value": 20},
+          "y": {"value": 20}
+        }
+      },
+      "marks": [
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "text": {"value": "Total: $53,561,580"},
+              "font": {"value": "Arial Narrow"},
+              "fontSize": {"value": 24},
+              "x": {"value": 280},
+              "y": {"signal": "height / 2"},
+              "baseline": {"value": "top"}
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+
+
+```
+</div>
+
+<div style="margin-bottom: 40px;">
+
+``` vega
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "title": {
+    "text": "Expenditure",
+    "anchor": "start",
+    "fontSize": 20,
+    "color": "#222",
+    "offset": 40
+  },
+  "config": {
+    "text": {
+      "fontSize": {"signal": 20}
+    }
+  },
+  "width": 300,
+  "height": 200,
+  "data": [
+    {
+      "name": "source",
+      "values": [
+        {"Subject": "Programme services", "Amount": 95.8},
+        {"Subject": "Fundraising", "Amount": 2.6},
+        {"Subject": "Management and general", "Amount": 1.6}
+      ],
+      "transform": [
+        {
+          "type": "aggregate",
+          "groupby": ["Subject"],
+          "fields": ["Amount"],
+          "ops": ["sum"],
+          "as": ["Total"]
+        },
+        {"type": "pie", "field": "Total", "sort": true}
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {"data": "source", "field": "Subject"}
+    }
+  ],
+  "signals": [
+    {
+      "name": "legendLabels",
+      "value": {
+        "Programme services": "Programme services: 95.8%",
+        "Fundraising": "Fundraising: 2.6%",
+        "Management and general": "Management and general: 1.6%"
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "orient": "bottom",
+      "direction": "vertical",
+      "labelFont": "Sans Serif",
+      "labelFontSize": 18,
+      "labelFontWeight": 400,
+      "titleFontSize": 40,
+      "symbolType": "circle",
+      "symbolSize": 500,
+      "padding": 40,
+      "labelBaseline": "top",
+      "labelLimit": 500,
+      "encode": {
+        "labels": {
+          "update": {
+            "text": {"signal": "legendLabels[datum.label]"}
+          }
+        }
+      }
+    }
+  ],
+  "marks": [
+    {
+      "type": "arc",
+      "from": {"data": "source"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "color", "field": "Subject"},
+          "x": {"signal": "width / 2"},
+          "y": {"signal": "height / 2"},
+          "startAngle": {"field": "startAngle"},
+          "endAngle": {"field": "endAngle"},
+          "outerRadius": {"signal": "width / 2.5"}
+        }
+      }
+    },
+    {
+      "type": "group",
+      "encode": {
+        "enter": {
+          "x": {"value": 20},
+          "y": {"value": 20}
+        }
+      },
+      "marks": [
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "text": {"value": "Total: $53,224,896"},
+              "font": {"value": "Arial Narrow"},
+              "fontSize": {"value": 24},
+              "x": {"value": 280},
+              "y": {"signal": "height / 2"},
+              "baseline": {"value": "top"}
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+
+
+```
+</div>
