@@ -1,12 +1,11 @@
 module.exports = function(answer, glossary) {
-    const replacedWords = {};
-    glossary.forEach(entry => {
-        const word = entry.glossed_word;
-        if (!replacedWords[word]) {
-            const regex = new RegExp(`\\b${word}\\b`, "i");
-            answer = answer.replace(regex, `<span class="vocab">${word}</span>`);
-            replacedWords[word] = true;
-        }
-    });
-    return answer;
+    const replacedWords = new Set(glossary.map(entry => entry.glossed_word));
+    
+    // Create a regular expression to match any glossary word in the text
+    const regex = new RegExp(`\\b(${Array.from(replacedWords).join('|')})\\b`, 'gi');
+
+    // Replace matching words with a span element
+    const result = answer.replace(regex, '<span class="vocab">$&</span>');
+
+    return result;
 }

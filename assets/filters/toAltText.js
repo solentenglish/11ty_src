@@ -9,6 +9,5 @@ module.exports = function(fileName) {
     altText = altText.replace(/\b\w/g, function(match) {
         return match.toUpperCase();
     });
-    console.log(altText);
     return altText;
 }
