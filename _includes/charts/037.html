@@ -22,192 +22,97 @@
 
 <div style="margin-top: 30px; margin-bottom: 30px;">
 
-```vega
+```vegalite
+
 {
-  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {"view": {"stroke": null}},
+  "width": 800,
+  "height": 350,
   "title": {
     "text": "Global Water Use by Sector",
     "fontSize": 24,
-    "dy": -20
+    "dy": -10
   },
-  "width": 600,
-  "height": 400,
-  "padding": 5,
-  "config": {
-     "legend": {
-        "orient": "bottom",
-        "layout": {
-            "bottom": {
-                "anchor": "middle"
-                }
-            }
-    },
-    "axis": {
-      "grid": true,
-      "nice": false
-    },
-    "axisX": {
-      "labelFontSize": 16,
-      "labelBaseline": "line-bottom",
-      "labelLineHeight": -50,
-      "Ytitle": "asdfads"
-    },
-    "axisY": {
-      "labelFontSize": "16",
-      "labelFontSize": 16,
-      "labelPadding": 10
-    }
+  "data": {
+    "url": "https://raw.githubusercontent.com/solentenglish/datajson/main/037.json"
   },
-  "signals": [
-    {
-      "name": "interpolate",
-      "value": "linear",
-      "bind": {
-        "input": "select",
-        "options": [
-          "basis",
-          "cardinal",
-          "catmull-rom",
-          "linear",
-          "monotone",
-          "natural",
-          "step",
-          "step-after",
-          "step-before"
-        ]
-      }
-    }
-  ],
-
-
-  "data": [
-    {
-      "name": "table",
-      "values": [
-          {"x": "1900", "y": 20, "c": "Domestic"},
-          {"x": "1900", "y": 20, "c": "Industrial"},
-          {"x": "1900", "y": 500, "c": "Agricultural"},
-
-          {"x": "1910", "y": 40, "c": "Domestic"},
-          {"x": "1910", "y": 50, "c": "Industrial"},
-          {"x": "1910", "y": 600, "c": "Agricultural"},
-
-          {"x": "1920", "y": 60, "c": "Domestic"},
-          {"x": "1920", "y": 80, "c": "Industrial"},
-          {"x": "1920", "y": 700, "c": "Agricultural"},
-
-          {"x": "1930", "y": 80, "c": "Domestic"},
-          {"x": "1930", "y": 110, "c": "Industrial"},
-          {"x": "1930", "y": 800, "c": "Agricultural"},
-
-          {"x": "1940", "y": 100, "c": "Domestic"},
-          {"x": "1940", "y": 150, "c": "Industrial"},
-          {"x": "1940", "y": 900, "c": "Agricultural"},
-
-          {"x": "1950", "y": 120, "c": "Domestic"},
-          {"x": "1950", "y": 200, "c": "Industrial"},
-          {"x": "1950", "y": 1100, "c": "Agricultural"},
-
-          {"x": "1960", "y": 150, "c": "Domestic"},
-          {"x": "1960", "y": 300, "c": "Industrial"},
-          {"x": "1960", "y": 1400, "c": "Agricultural"},
-
-          {"x": "1970", "y": 180, "c": "Domestic"},
-          {"x": "1970", "y": 450, "c": "Industrial"},
-          {"x": "1970", "y": 1700, "c": "Agricultural"},
-
-          {"x": "1980", "y": 210, "c": "Domestic"},
-          {"x": "1980", "y": 650, "c": "Industrial"},
-          {"x": "1980", "y": 2100, "c": "Agricultural"},
-
-          {"x": "1990", "y": 250, "c": "Domestic"},
-          {"x": "1990", "y": 900, "c": "Industrial"},
-          {"x": "1990", "y": 2500, "c": "Agricultural"},
-
-          {"x": "2000", "y": 300, "c": "Domestic"},
-          {"x": "2000", "y": 1100, "c": "Industrial"},
-          {"x": "2000", "y": 3000, "c": "Agricultural"}
-        ]
-    }
-  ],
-  "legends": [
-    {
-      "fill": "color",
-      "direction": "horizontal",
-      "padding": "20",
-      "labelFontSize": "16",
-      "orient": "bottom",
-      "columns": 2,
-      "labelLimit": "none",
-      "columnPadding": 30,
-      "rowPadding": 10,
-      "strokeColor": "black",
-      "symbolSize": 500,
-      "labelOffset": 10,
-      "offset": 30
-    }
-  ],
-  "scales": [
-    {
-      "name": "x",
-      "type": "point",
-      "range": "width",
-      "domain": {"data": "table", "field": "x"}
-    },
-    {
-      "name": "y",
-      "type": "linear",
-      "range": "height",
-      "nice": false,
-      "zero": false,
-      "domain": [0,3200]
-    },
-    {
-      "name": "color",
-      "type": "ordinal",
-      "range": "category",
-      "domain": {"data": "table", "field": "c"}
-    }
-  ],
-
-  "axes": [
-    {"orient": "bottom", "scale": "x", "title":"year", "titleFontSize":"20", "titlePadding": 20},
-    {"orient": "left", "scale": "y", "tickCount": 8, "title":"km3", "titleFontSize":"20"}
-  ],
-  "marks": [
-    {
-      "type": "group",
-      "from": {
-        "facet": {
-          "name": "series",
-          "data": "table",
-          "groupby": "c"
-        }
-      },
-      "marks": [
-        {
+  "layer": [
+      {
+        "mark": {
           "type": "line",
-          "from": {"data": "series"},
-          "encode": {
-            "enter": {
-              "x": {"scale": "x", "field": "x", "font": 30},
-              "y": {"scale": "y", "field": "y"},
-              "stroke": {"scale": "color", "field": "c"},
-              "strokeWidth": {"value": 6}
+          "strokeWidth": "5"
+        },
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "temporal",
+              "title": "Year",
+              "axis": {
+                "values": ["1900", "1910", "1920", "1930", "1940", "1950", "1960", "1970", "1980", "1990", "2000"],
+                "format": "%Y",
+                "domain": false,
+                "tickCount": 11,
+                "labelAngle": 90,
+                "titlePadding": 20,
+                "labelPadding": 10,
+                "labelFontSize": 24,
+                "titleFontSize": 24
+              }
             },
-            "update": {
-              "interpolate": {"signal": "interpolate"},
-              "strokeOpacity": {"value": "0.6"}
+            "y": {
+              "title": "km3",
+              "axis": {
+                "tickCount": 10,
+                "titlePadding": 20,
+                "ticks": false,
+                "domain": false,
+                "labelPadding": 10,
+                "labelFontSize": 24,
+                "titleFontSize": 24
+                
+              },
+              "field": "value",
+              "type": "quantitative",
+              "scale": {"domain": [0, 3500]}
             },
-            "hover": {
-              "strokeOpacity": {"value": 0.5}
+            "color": {
+              "field": "category",
+              "type": "nominal",
+              "legend": {
+                "title": "Category",
+                "titlePadding": 30,
+                "labelFontSize": 24,
+                "titleFontSize": 24,
+                "orient": "bottom",
+                "labelLimit": 250,
+                "symbolSize": 500,
+                "padding": 30
+              }
             }
           }
+      },
+      {
+        "mark": {"type": "point", "filled": true, "size": 100},
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "temporal"
+          },
+          "y": {
+            "field": "value",
+            "type": "quantitative"
+          },
+          "color": {
+            "field": "category",
+            "type": "nominal"
+          }
         }
-      ]
     }
-  ]
+    ]
 }
+
+
 ```
 
 <div id="water-table">

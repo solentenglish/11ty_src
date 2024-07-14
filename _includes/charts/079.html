@@ -1,0 +1,89 @@
+<div style="margin-top: 30px; margin-bottom: 30px;">
+
+  ```vegalite
+  {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {"view": {"stroke": null}},
+  "width": 300,
+  "height": 250,
+  "title": {
+    "text": "Social Club Event Participation",
+    "dy": -10
+  },
+  "description": "A simple line chart with embedded data.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/solentenglish/datajson/main/079.json"
+  },
+  "layer": [
+      {
+        "mark": {
+          "type": "line",
+          "strokeWidth": 3
+        },
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "temporal",
+            "title": "Year",
+            "axis": {
+              "values": ["2000", "2005", "2010", "2015", "2020"],
+              "format": "%Y",
+              "domain": false,
+              "tickCount": 5,
+              "labelAngle": 0,
+              "titlePadding": 20,
+              "labelPadding": 20,
+              "grid": false
+            }
+          },
+          "y": {
+            "title": "Number of participants",
+            "axis": {
+              "tickCount": 10,
+              "titleX": -40,
+              "ticks": false,
+              "domain": false,
+              "labelPadding": 10
+            },
+            "field": "value",
+            "type": "quantitative",
+            "scale": {"domain": [0, 70]}
+          },
+          "color": {
+            "field": "activity",
+            "type": "nominal",
+            "legend": {
+              "orient": "bottom",
+              "title": "Activity",
+              "titlePadding": 10
+            }
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "point",
+          "filled": true,
+          "size": 80,
+          "shape": "circle"
+        },
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "temporal"
+          },
+          "y": {
+            "field": "value",
+            "type": "quantitative"
+          },
+          "color": {
+            "field": "activity",
+            "type": "nominal"
+          }
+        }
+    }
+    ]
+}
+
+```
+</div>

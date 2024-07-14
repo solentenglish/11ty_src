@@ -1,117 +1,80 @@
 <div style="margin-top: 50px; margin-bottom: 30px;">
 
-```vega
+```vegalite
 {
-  "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "title": "Coffee consumption per year in litres",
-  "titleOrient": "bottom",
-  "width": 500,
-  "height": 200,
-  "padding": 5,
-  "signals": [
-    {
-      "name": "interpolate",
-      "value": "linear",
-      "bind": {
-        "input": "select",
-        "options": [
-          "basis",
-          "cardinal",
-          "catmull-rom",
-          "linear",
-          "monotone",
-          "natural",
-          "step",
-          "step-after",
-          "step-before"
-        ]
-      }
-    }
-  ],
-
-
-  "data": [
-    {
-      "name": "table",
-      "values": [
-        {"x": "1983", "y": 18, "c": "Spain"}, {"x": "1983", "y": 82, "c": "France"}, {"x": "1983", "y": 102, "c": "Italy"},{"x": "1983", "y": 41, "c": "Germany"},
-        {"x": "1993", "y": 21, "c": "Spain"}, {"x": "1993", "y": 91, "c": "France"}, {"x": "1993", "y": 107, "c": "Italy"},{"x": "1993", "y": 61, "c": "Germany"},
-        {"x": "2003", "y": 26, "c": "Spain"}, {"x": "2003", "y": 68, "c": "France"}, {"x": "2003", "y": 100, "c": "Italy"},{"x": "2003", "y": 65, "c": "Germany"},
-        {"x": "2013", "y": 45, "c": "Spain"}, {"x": "2013", "y": 60, "c": "France"}, {"x": "2013", "y": 95, "c": "Italy"},{"x": "2013", "y": 76, "c": "Germany"},
-        {"x": "2023", "y": 47, "c": "Spain"}, {"x": "2023", "y": 47, "c": "France"}, {"x": "2023", "y": 85, "c": "Italy"},{"x": "2023", "y": 76, "c": "Germany"}]
-    }
-  ],
-  "legends": [
-    {
-      "fill": "color",
-      "direction": "horizontal",
-      "padding": "0",
-      "labelFontSize": "16",
-      "orient": "bottom"
-    }
-  ],
-  "scales": [
-    {
-      "name": "x",
-      "type": "point",
-      "range": "width",
-      "domain": {"data": "table", "field": "x"}
-    },
-    {
-      "name": "y",
-      "type": "linear",
-      "range": "height",
-      "nice": true,
-      "zero": true,
-      "domain": [0,120]
-    },
-    {
-      "name": "color",
-      "type": "ordinal",
-      "range": "category",
-      "domain": {"data": "table", "field": "c"}
-    }
-  ],
-
-  "axes": [
-    {"orient": "bottom", "scale": "x"},
-    {"orient": "left", "scale": "y"}
-  ],
-
-  "marks": [
-    {
-      "type": "group",
-      "from": {
-        "facet": {
-          "name": "series",
-          "data": "table",
-          "groupby": "c"
-        }
-      },
-      "marks": [
-        {
-          "type": "line",
-          "from": {"data": "series"},
-          "encode": {
-            "enter": {
-              "x": {"scale": "x", "field": "x"},
-              "y": {"scale": "y", "field": "y"},
-              "stroke": {"scale": "color", "field": "c"},
-              "strokeWidth": {"value": 2}
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {"view": {"stroke": null}},
+  "width": 400,
+  "height": 250,
+  "title": {
+    "text": "Coffee Consumption by Country",
+    "dy": -10
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/solentenglish/datajson/main/043.json"
+  },
+  "layer": [
+      {
+        "mark": "line",
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "temporal",
+              "title": "Year",
+              "axis": {
+                "values": ["1983", "1993", "2003", "2013", "2023"],
+                "format": "%Y",
+                "domain": false,
+                "tickCount": 5,
+                "labelAngle": 0,
+                "titlePadding": 20,
+                "labelPadding": 10
+              }
             },
-            "update": {
-              "interpolate": {"signal": "interpolate"},
-              "strokeOpacity": {"value": 1}
+            "y": {
+              "title": "Consumption in litres",
+              "axis": {
+                "tickCount": 10,
+                "titleX": -40,
+                "ticks": false,
+                "domain": false,
+                "labelPadding": 10,
+                "titlePadding": 130
+              },
+              "field": "value",
+              "type": "quantitative",
+              "scale": {"domain": [0, 120]}
             },
-            "hover": {
-              "strokeOpacity": {"value": 0.5}
+            "color": {
+              "field": "category",
+              "type": "nominal",
+              "legend": {
+                "title": "Country",
+                "titlePadding": 10
+              }
             }
           }
+      },
+      {
+        "mark": {"type": "point", "filled": true},
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "temporal"
+          },
+          "y": {
+            "field": "value",
+            "type": "quantitative"
+          },
+          "color": {
+            "field": "category",
+            "type": "nominal"
+          }
         }
-      ]
     }
-  ]
+    ]
 }
+
 ```
 
 </div>
