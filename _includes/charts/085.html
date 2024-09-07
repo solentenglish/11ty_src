@@ -1,0 +1,348 @@
+<style>
+.mycontainer {
+  width: 100%;
+  position: relative;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .myinner, .myinner2-mobile {
+    width: 200px;
+    margin: 0 auto;
+  }
+  .mycontainer2 {
+    display: none;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px to 768px) */
+@media only screen and (min-width: 601px) {
+  .myinner {
+    width: 400px;
+    margin: 0 auto;
+  }
+  .myinner2 {
+    width: 500px;
+    margin: 0 auto;
+  }
+
+  .mycontainer2-mobile {
+    display: none;
+  }
+}
+
+
+</style>
+
+<div style="margin-top: 30px; margin-bottom: 30px;">
+    <p style="margin-top:50px; font-size: 1.3em; color: #222; font-family: oswald; font-weight: 900;">
+        Location of dance classes
+    </p>
+    <div class="mycontainer">
+        <div class="myinner">
+
+```vegalite
+{
+    "config": {
+        "view": {
+            "stroke": null
+        }
+    },
+    "title": {
+        "text": "",
+        "dy": -10
+    },
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A simple pie chart with embedded data.",
+    "data": {
+        "values": [
+            {"category": "Private Studios", "value": 48},
+            {"category": "College-based Studios", "value": 10},
+            {"category": "School Halls (after-school)", "value": 24},
+            {"category": "Community Halls and Other", "value": 18}
+        ]
+    },
+    "transform": [
+        {
+            "calculate": "datum.category === 'Private Studios' ? 1 : datum.category === 'College-based Studios' ? 2 : datum.category === 'School Halls (after-school)' ? 3 : 4",
+            "as": "categoryOrder"
+        },
+        {
+            "calculate": "datum.value + '%' ",
+            "as": "valueWithPercent"
+        }
+    ],
+    "encoding": {
+        "theta": {"field": "value", "type": "quantitative", "stack": true},
+        "color": {
+            "field": "categoryOrder",
+            "type": "nominal",
+            "sort": [
+                1, 2, 3, 4
+            ]
+        }
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "arc",
+                "outerRadius": 110
+            },
+            "encoding": {
+                "color": {
+                    "field": "categoryOrder",
+                    "type": "nominal",
+                    "sort": [
+                        "Private Studios",
+                        "College-based Studios",
+                        "School Halls (after-school)",
+                        "Community Halls and Other"
+                    ],
+                    "legend": {
+                        "labelExpr": "datum.value == '1' ? 'Private Studios' : datum.value == '2' ? 'College-based Studios' : datum.value == '3' ? 'School Halls (after-school)' : datum.value == '4' ? 'Community Halls and Other' : datum.value",
+                        "title": "",
+                        "strokeColor": "#111",
+                        "padding": 20,
+                        "orient": "none",
+                        "legendX": -50,
+                        "legendY": 280,
+                        "columns": 1,
+                        "direction": "vertical",
+                        "labelFontSize": 12,
+                        "titlePadding": 10,
+                        "symbolType": "square",
+                        "labelLimit": 300
+                    }
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "radius": 140,
+                "fill": "#222",
+                "fontSize": 16,
+                "fontWeight": 600
+            },
+            "encoding": {
+                "text": {
+                    "field": "valueWithPercent",
+                    "type": "nominal"
+                }
+            }
+        }
+    ]
+}
+
+```
+        </div>
+    </div>
+</div>
+
+<div>
+    <p style="margin-top:50px; font-size: 1.3em; color: #222; font-family: oswald; font-weight: 900;">
+        Type of dance classes
+    </p>
+    <div class="mycontainer2">
+        <div class="myinner2">
+
+```vegalite
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": ""
+    },
+    "data": {
+        "values": [
+            {"Dance": "Ballet", "AgeGroup": "Under 11", "Students": 600},
+            {"Dance": "Ballet", "AgeGroup": "11 - 16", "Students": 300},
+            {"Dance": "A", "AgeGroup": "Under 11", "Students": 0},
+            {"Dance": "Tap", "AgeGroup": "Under 11", "Students": 450},
+            {"Dance": "Tap", "AgeGroup": "11 - 16", "Students": 420},
+            {"Dance": "B", "AgeGroup": "Under 11", "Students": 0},
+            {"Dance": "Modern", "AgeGroup": "Under 11", "Students": 300},
+            {"Dance": "Modern", "AgeGroup": "11 - 16", "Students": 520}
+        ]
+    },
+    "mark": "bar",
+    "encoding": {
+        "x": {
+            "field": "Students",
+            "type": "quantitative",
+            "title": "Number of Students",
+            "axis": {
+                "titlePadding": 20,
+                "offset": 10,
+                "grid": true,
+                "gridOpacity": ".3",
+                "gridColor": "#333",
+                "labelFontSize": 8,
+                "titleFontSize": 8
+            }
+        },
+        "y": {
+            "field": "Category",
+            "type": "ordinal",
+            "title": "",
+            "sort": [
+                "Ballet: Under 11",
+                "Ballet: 11 - 16",
+                "B: Under 11",
+                "Tap: Under 11",
+                "Tap: 11 - 16",
+                "A: Under 11",
+                "Modern: Under 11",
+                "Modern: 11 - 16"
+            ],
+            "axis": {
+                "labelExpr": "datum.value === 'A: Under 11' || datum.value === 'B: Under 11' || datum.value === 'Tap: Under 11' || datum.value === 'Ballet: Under 11' || datum.value === 'Modern: Under 11' ? '' : datum.value === 'Tap: 11 - 16' ? 'Tap' : datum.value === 'Ballet: 11 - 16' ? 'Ballet' : datum.value === 'Modern: 11 - 16' ? 'Modern' : datum.value",
+                "tickSize": 0,
+                "labelOffset": -10,
+                "labelPadding": 10,
+                "domain": false,
+                "labelFontSize": 7
+            }
+        },
+        "color": {
+            "field": "AgeGroup",
+            "type": "nominal",
+            "scale": {
+                "domain": ["Under 11", "11 - 16"],
+                "range": ["#1f77b4", "#ff7f0e"]
+            },
+            "legend": {
+                "orient": "none",
+                "legendX": 20,
+                "legendY": 230,
+                "title": "",
+                "titlePadding": 10,
+                "offset": 20,
+                "strokeColor": "#111",
+                "padding": 20,
+                "labelFontSize": 7,
+                "columns": 2
+            }
+        }
+    },
+    "transform": [
+        {
+            "calculate": "datum.Dance + ': ' + datum.AgeGroup",
+            "as": "Category"
+        },
+        {
+            "calculate": "datum.Dance + ': ' + datum.AgeGroup + ' ' + datum.Dance",
+            "as": "GroupCategory"
+        }
+    ],
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        }
+    }
+}
+```
+    </div>
+  </div>
+
+  <div class="mycontainer2-mobile">
+        <div class="myinner2-mobile">
+
+```vegalite
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": {
+        "text": ""
+    },
+    "data": {
+        "values": [
+            {"Dance": "Ballet", "AgeGroup": "Under 11", "Students": 600},
+            {"Dance": "Ballet", "AgeGroup": "11 - 16", "Students": 300},
+            {"Dance": "A", "AgeGroup": "Under 11", "Students": 0},
+            {"Dance": "Tap", "AgeGroup": "Under 11", "Students": 450},
+            {"Dance": "Tap", "AgeGroup": "11 - 16", "Students": 420},
+            {"Dance": "B", "AgeGroup": "Under 11", "Students": 0},
+            {"Dance": "Modern", "AgeGroup": "Under 11", "Students": 300},
+            {"Dance": "Modern", "AgeGroup": "11 - 16", "Students": 520}
+        ]
+    },
+    "mark": "bar",
+    "encoding": {
+        "x": {
+            "field": "Students",
+            "type": "quantitative",
+            "title": "Number of Students",
+            "axis": {
+                "titlePadding": 20,
+                "offset": 10,
+                "grid": true,
+                "gridOpacity": ".3",
+                "gridColor": "#333",
+                "labelFontSize": 8,
+                "titleFontSize": 8
+            }
+        },
+        "y": {
+            "field": "Category",
+            "type": "ordinal",
+            "title": "",
+            "sort": [
+                "Ballet: Under 11",
+                "Ballet: 11 - 16",
+                "B: Under 11",
+                "Tap: Under 11",
+                "Tap: 11 - 16",
+                "A: Under 11",
+                "Modern: Under 11",
+                "Modern: 11 - 16"
+            ],
+            "axis": {
+                "labelExpr": "datum.value === 'A: Under 11' || datum.value === 'B: Under 11' || datum.value === 'Tap: Under 11' || datum.value === 'Ballet: Under 11' || datum.value === 'Modern: Under 11' ? '' : datum.value === 'Tap: 11 - 16' ? 'Tap' : datum.value === 'Ballet: 11 - 16' ? 'Ballet' : datum.value === 'Modern: 11 - 16' ? 'Modern' : datum.value",
+                "tickSize": 0,
+                "labelOffset": -10,
+                "labelPadding": 10,
+                "domain": false,
+                "labelFontSize": 7
+            }
+        },
+        "color": {
+            "field": "AgeGroup",
+            "type": "nominal",
+            "scale": {
+                "domain": ["Under 11", "11 - 16"],
+                "range": ["#1f77b4", "#ff7f0e"]
+            },
+            "legend": {
+                "orient": "none",
+                "legendX": 20,
+                "legendY": 230,
+                "title": "",
+                "titlePadding": 10,
+                "offset": 20,
+                "strokeColor": "#111",
+                "padding": 20,
+                "labelFontSize": 7,
+                "columns": 2,
+                "labelAngle": 90
+            }
+        }
+    },
+    "transform": [
+        {
+            "calculate": "datum.Dance + ': ' + datum.AgeGroup",
+            "as": "Category"
+        },
+        {
+            "calculate": "datum.Dance + ': ' + datum.AgeGroup + ' ' + datum.Dance",
+            "as": "GroupCategory"
+        }
+    ],
+    "config": {
+        "view": {
+            "stroke": "transparent"
+        }
+    }
+}
+```
+    </div>
+  </div>
+</div>

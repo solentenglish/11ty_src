@@ -1,7 +1,40 @@
 <style>
-	#travel-table th, #travel-table td {
-		min-width: 120px;
-		width:  120px;
+
+@media only screen and (max-width: 600px) {
+  #travel-table {
+  	display: none;
+  }
+
+  #travel-table-mobile {
+  	margin-top: 30px;
+  }
+  #travel-table-mobile th, #travel-table-mobile td {
+		font-size: .5em;
+		text-align: center;
+	}
+
+	#travel-table-mobile tr:nth-child(even) {
+	    background-color: #e5e7eb;
+	}
+
+	#travel-table-mobile th:first-child, #travel-table-mobile td:first-child {
+		text-align: left;
+		padding-left: 10px;
+	}
+}
+
+@media only screen and (min-width: 601px) {
+  #travel-table {
+  	margin-top: 30px;
+  }
+
+  #travel-table-mobile {
+  	display: none;
+  }
+
+  #travel-table th, #travel-table td {
+		max-width: 20px;
+		width:  20px;
 		text-align: center;
 	}
 
@@ -13,6 +46,8 @@
 	#travel-table tr:nth-child(even) {
 	    background-color: #e5e7eb;
 	}
+}
+	
 </style>
 <div id="travel-table">
 
@@ -28,5 +63,22 @@ Tokyo, 1927, 155, 1927
 Washington DC, 1976, 126, 144
 Kyoto, 1981, 11, 45
 Los Angeles, 2001, 28, 50
+```
+</div>
+
+<div id="travel-table-mobile">
+
+```csv-table
+---
+width: 500
+height: 100
+---
+City, Date opened, Kms of route, Pgr per year
+London, 1863, 394, 775
+Paris, 1900, 199, 1191
+Tokyo, 1927, 155, 1927
+DC, 1976, 126, 144
+Kyoto, 1981, 11, 45
+LA, 2001, 28, 50
 ```
 </div>

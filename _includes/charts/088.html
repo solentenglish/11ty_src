@@ -1,0 +1,96 @@
+<div style="margin-top: 30px; margin-bottom: 30px;">
+
+```vegalite
+{
+  "config": {
+    "facet": {
+      "spacing": 30
+    },
+    "style": {
+      "cell": {
+        "stroke": "transparent"
+      }
+    },
+    "legend": {
+            "title": "",
+            "strokeColor": "#111",
+            "padding": 20,
+            "orient": "top",
+            "columns": 1,
+            "direction": "vertical",
+            "labelFontSize": 12,
+            "titlePadding": 10,
+            "symbolType": "square",
+            "labelLimit": 300
+          }
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/solentenglish/datajson/main/088.json"
+  },
+  "transform": [
+        {
+            "calculate": "datum.percentage + '%' ",
+            "as": "percentageWithPercent"
+        },
+        {
+          "calculate": "datum.region + '\\n\\n'",
+          "as": "regionWithBreak"
+        }
+    ],
+
+  "facet": {
+    "row": {
+      "field": "row",
+      "header": {
+        "title": "",
+        "labels": false
+      }
+    },
+    "column": {
+      "field": "column",
+      "header": {
+        "title": "",
+        "labels": false
+      }
+    }
+  },
+  "spec": {
+    "encoding":{
+      "theta": {"field": "percentage", "type": "quantitative", "stack": true},
+      "color": {"field": "use", "type": "nominal"}
+    },
+    "layer": [
+      {
+        "mark": {"type": "arc", "radius": 80}
+      },
+      {
+        "mark": {
+          "type": "text",
+          "outerRadius": 95,
+          "fill": "#222",
+          "fontSize": 12,
+          "fontWeight": 400
+        },
+        "encoding": {
+          "text": {"field": "percentageWithPercent", "type": "nominal"}
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "paddingBottom": 100,
+          "fontWeight": 700,
+          "dy": -120,
+          "align": "center"
+        },
+        "encoding": {
+          "text": {"field": "regionWithBreak", "type": "nominal"},
+          "color": {"value": "black"}
+        }
+      }
+    ]
+  }
+}
+
+```
+</div>
