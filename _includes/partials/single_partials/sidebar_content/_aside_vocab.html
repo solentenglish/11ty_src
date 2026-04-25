@@ -16,7 +16,6 @@
             <p class="definition_grs">{{ keywords[numIndex -1].definitions[loop.index0] }}</p>
           {% endfor %}
         </ul> -->
-        {{ words | dump }}
         <ul id="myList" style="margin-top: 30px;">
           {% for word in glossary %}
             <li class="glossary_term_grs">{{ word.glossed_word }} ({{ word.word_class }})</li>

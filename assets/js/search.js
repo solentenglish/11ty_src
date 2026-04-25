@@ -40,7 +40,11 @@
   fetch("/search-index.json").then((response) =>
     response.json().then((rawIndex) => {
       window.searchIndex = elasticlunr.Index.load(rawIndex);
-      document.getElementById("searchField").addEventListener("input", search);
+      const searchField = document.getElementById("searchField");
+      searchField.addEventListener("input", search);
+      if (searchField.value) {
+        searchField.dispatchEvent(new Event("input"));
+      }
     })
   );
 })(window, document);

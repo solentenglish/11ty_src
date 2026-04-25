@@ -3,7 +3,7 @@ const searchFilter = require("./assets/filters/searchFilter");
 const incrementFilter = require("./assets/filters/incrementFilter");
 const asPostDateFilter = require("./assets/filters/asPostDateFilter");
 const splitFilter = require('./assets/filters/splitFilter');
-const first69Chars = require('./assets/filters/first69chars');
+const first60Chars = require('./assets/filters/first60chars');
 const typeOfFilter = require('./assets/filters/typeOfFilter');
 const lowerCase = require('./assets/filters/lowercase');
 const getRootDir = require('./assets/filters/getRootDir');
@@ -58,7 +58,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("increment", incrementFilter);
   eleventyConfig.addFilter("split", splitFilter);
   eleventyConfig.addFilter("typeOf", typeOfFilter);
-  eleventyConfig.addFilter("first69", first69Chars);
+  eleventyConfig.addFilter("first60", first60Chars);
   eleventyConfig.addFilter("lowercase", lowerCase);
   eleventyConfig.addFilter("highlightWords", highlightWords);
   eleventyConfig.addFilter("getRootDir", getRootDir);
@@ -86,10 +86,9 @@ module.exports = function (eleventyConfig) {
     "./assets/data": "/data",
     "./assets/php/contact": "/pages/contact",
     "./assets/images/**/*": "/images",
-    "./assets/style.css": "/style.css",
     "./assets/json": "/json",
     './content/robots.txt': '/robots.txt',
-    './assests/google/google335b67ae6573da23.html': 'google335b67ae6573da23.html'
+    './assets/google/google335b67ae6573da23.html': 'google335b67ae6573da23.html'
   });
 
   return {
@@ -100,6 +99,7 @@ module.exports = function (eleventyConfig) {
       "njk",
       "html",
       "liquid",
+      "11ty.js",
     ],
 
     // Pre-process *.md files with: (default: `liquid`)

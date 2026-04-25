@@ -10,9 +10,9 @@
     </div>
     <div class="entry-thumbnail">
         {% if post.data.latest %}
-        <img src="/hero_images/{{ post.data.index }}/new_{{ post.data.jpg_name }}" alt="{{ post.data.jpg_name | toAltText }}">
+        <img src="/hero_images/{{ post.data.index }}/new_{{ post.data.jpg_name }}" alt="{{ post.data.jpg_name | toAltText }}" loading="lazy">
         {% else %}
-        <img src="/hero_images/{{ post.data.index }}/{{ post.data.jpg_name }}" alt="{{ post.data.jpg_name | toAltText }}">
+        <img src="/hero_images/{{ post.data.index }}/{{ post.data.jpg_name }}" alt="{{ post.data.jpg_name | toAltText }}" loading="lazy">
         {% endif %}
     </div>
 </header>

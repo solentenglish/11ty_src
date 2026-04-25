@@ -16,7 +16,11 @@
 <meta property="og:url" content="https://ieltswriting.tips{{ page.url }}" />
 <meta property="og:description" content="{{ description }}" />
 <meta property="og:image" content="{{ site.url }}/images/{{ image }}" />
+{% if tags and 'post' in tags %}
 <meta property="og:type" content="article" />
+{% else %}
+<meta property="og:type" content="website" />
+{% endif %}
 {% include 'partials/base_partials/head_content/_canonical_links.html' %}
 {% include 'partials/base_partials/head_content/_fonts_link.html' %}
 {% include 'partials/base_partials/head_content/_google_tag.html' %}

@@ -81,7 +81,7 @@ eleventyConfig.addCollection("sortedPostsAcOne", function(collection) {
         tag => !['post', 'page', 'all', 'main_menu', 'index', 'academic_two', 'academic_one', 'general_one', 'general_two'].includes(tag)
       ).forEach(
         tag => {
-          if (tag !== '' || null) {
+          if (tag !== '' && tag != null) {
             allTags.push(tag);
           } else {
             allTags.push('oossops');
@@ -103,16 +103,12 @@ eleventyConfig.addCollection("sortedPostsAcOne", function(collection) {
     );
     tagsSet.tag_value = unique.filter((str) => str !== '');
     tagsSet.tag_quantity = noOfTags.filter((str) => str !== '');
-    var x = 0;
-    var index = 0;
     var myobject = [];
     tagsSet.tag_value.forEach(function (value, i) {
-        temp = {};
+        let temp = {};
         temp.tag = tagsSet.tag_value[i];
         temp.no = tagsSet.tag_quantity[i];
         myobject.push(temp);
-        x = x +1;
-        index = i
     })
     myobject.sort(function(a, b) {
       return parseFloat(b.no) - parseFloat(a.no);

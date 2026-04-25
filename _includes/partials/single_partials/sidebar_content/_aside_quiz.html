@@ -13,9 +13,8 @@
         {% endif %}
     </div>
 </aside>
+{% if h5pPath | pathExists %}
 <script type="text/javascript" src="/h5p/main.bundle.js"></script>
-
-
 <script>
     const el = document.getElementById('h5p-container');
     const options = {
@@ -25,3 +24,4 @@
     }
     new H5PStandalone.H5P(el, options);
 </script>
+{% endif %}

@@ -5,7 +5,8 @@
     "start": "npx @11ty/eleventy --serve --quiet",
     "encrypt": "staticrypt ./_site/index.html -d ./_site/",
     "build": "npx @11ty/eleventy --output=../_site",
-    "spell": "cspell content/posts/final/**/*.md"
+    "spell": "cspell content/posts/final/**/*.md",
+    "generate-audio": "node scripts/generate-audio.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
@@ -14,15 +15,18 @@
     "@code-blocks/charts": "^0.1.9",
     "@code-blocks/eleventy-plugin": "^0.1.8",
     "@code-blocks/tables": "^0.1.8",
+    "@google-cloud/text-to-speech": "^6.4.0",
     "dotenv": "^16.3.1",
     "elasticlunr": "^0.9.5",
     "luxon": "^3.3.0",
     "mongodb-realm-cli": "^2.6.2",
+    "pagefind": "^1.5.2",
     "staticrypt": "^3.3.0"
   },
   "dependencies": {
     "@code-blocks/graphviz": "^0.1.8",
     "@kevingimbel/eleventy-plugin-mermaid": "^2.1.0",
+    "clean-css": "^5.3.3",
     "cspell": "^6.31.2",
     "debug": "^4.3.4",
     "eleventy-plugin-blog-tools": "^0.4.1",

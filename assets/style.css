@@ -243,13 +243,6 @@ ul:hover a:hover {
 	font-weight:normal;
 	font-style:normal;
 }
-@font-face {
-	font-family:'behance';
-	src:url('fonts/behance.eot?61221480');
-	src:url('fonts/behance.eot?61221480#iefix') format('embedded-opentype'),url('fonts/behance.woff?61221480') format('woff'),url('fonts/behance.ttf?61221480') format('truetype'),url('fonts/behance.svg?61221480#behance') format('svg');
-	font-weight:normal;
-	font-style: normal;
-}
 
 #page {
     min-height: 100vh !important;
@@ -914,19 +907,6 @@ a:active,a:focus {
 }
 .widget_search input[type="search"] {
 	width: 70%;
-}
-.widget_recent_comments ul li:before, .widget_categories ul li:before, .widget_archive ul li:before, .widget_links ul li:before, .widget_meta ul li:before, .widget_pages ul li:before, .widget_recent_entries ul li:before {
-	content: "\f105";
-	font-family: FontAwesome;
-	margin-right: 5px;
-}
-
-.widget_hightlights ul li:before{
-
-	/*content: "\f22d"; list-style */
-	font-family: FontAwesome;
-	margin-right: 5px;
-	color: black;
 }
 .widget a {color:inherit;}
 /*--------------------------------------------------------------11.0 Site Content--------------------------------------------------------------*/
@@ -2242,14 +2222,14 @@ ul.shortcode-archive li {
 			margin: 0 10px 48px;
 	}
 }
-/* Masonry */
-@media (min-width:480px) {
-	.bloggrid article {
-		width:46%;
-		margin-right:4%;
-	}
-	.bloggrid article:nth-child(2n+2) {
-		margin-right:0;
+.bloggrid {
+	display:grid;
+	grid-template-columns:repeat(2,1fr);
+	gap:2em 4%;
+}
+@media (max-width:480px) {
+	.bloggrid {
+		grid-template-columns:1fr;
 	}
 }
 .bloggrid article.hentry,.single-portfolio .hentry {
@@ -2327,6 +2307,27 @@ form.comment-form {
 	margin-right:-15px;
 }
 /* CUSTOM STYLE */
+@font-face {
+	font-family: 'Oswald';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/oswald-regular.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Raleway';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/raleway-regular.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Zeyada';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/zeyada-regular.woff2') format('woff2');
+}
 body { font-family: 'Raleway'; }
 h1, h2, h3, h4, h5, h6 { font-family: 'Oswald'; }
 .site-title { font-family: 'Oswald'; }

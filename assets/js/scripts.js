@@ -24,16 +24,20 @@
 /*---------------------------------------------------------------------------------------------
   Scroll to top
 ----------------------------------------------------------------------------------------------*/
-jQuery(document).ready(function($){
-    $(window).scroll(function(){
-        if ($(this).scrollTop() < 400) {
-            $('.smoothup') .fadeOut();
-        } else {
-            $('.smoothup') .fadeIn();
-        }
+(function() {
+    var smoothup = document.querySelector('.smoothup');
+    if (!smoothup) return;
+
+    smoothup.style.cssText += ';opacity:0;transition:opacity 0.4s;pointer-events:none';
+
+    window.addEventListener('scroll', function() {
+        var visible = window.scrollY >= 400;
+        smoothup.style.opacity = visible ? '1' : '0';
+        smoothup.style.pointerEvents = visible ? 'auto' : 'none';
     });
-    $('.smoothup').on('click', function(){
-        $('html, body').animate({scrollTop:0}, 'slow');
-        return false;
-        });
-});
+
+    smoothup.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
